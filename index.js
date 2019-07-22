@@ -1,7 +1,7 @@
 // @flow
 
-import {NativeModules, PermissionsAndroid, Platform} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import { NativeModules, PermissionsAndroid, Platform, AsyncStorage } from 'react-native';
+// import AsyncStorage from '@react-native-community/async-storage';
 const NativeModule = NativeModules.ReactNativePermissions;
 
 export type PermissionStatus =
@@ -88,7 +88,7 @@ class ReactNativePermissions {
 
   check = (
     permission: string,
-    options?: string | {type?: string},
+    options?: string | { type?: string },
   ): Promise<PermissionStatus> => {
     if (!PERMISSIONS[permission]) {
       return Promise.reject(
@@ -133,7 +133,7 @@ class ReactNativePermissions {
 
   request = (
     permission: string,
-    options?: string | {type?: string, rationale?: Rationale},
+    options?: string | { type?: string, rationale?: Rationale },
   ): Promise<PermissionStatus> => {
     if (!PERMISSIONS[permission]) {
       return Promise.reject(
@@ -189,7 +189,7 @@ class ReactNativePermissions {
 
   checkMultiple = (
     permissions: string[],
-  ): Promise<{[permission: string]: PermissionStatus}> => {
+  ): Promise<{ [permission: string]: PermissionStatus }> => {
     return Promise.all(
       permissions.map(permission => this.check(permission)),
     ).then(result =>
